@@ -1,31 +1,37 @@
 const mongoose = require('mongoose');
 
-const influencerSchema = mongoose.Schema({
+const influencerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  platform: {
+  email: {
     type: String,
     required: true,
+    unique: true
   },
+  bio: String,
   followers: {
     type: Number,
-    required: true,
+    default: 0
   },
-  engagements: {
+  following: {
     type: Number,
-    required: true,
+    default: 0
   },
+  posts: {
+    type: Number,
+    default: 0
+  },
+  profilePicture: String,
+  socialMediaLinks: [String]
 }, {
-  timestamps: true,
+  timestamps: true
 });
 
-const Influencer = mongoose.model('Influencer', influencerSchema);
-
-module.exports = Influencer;
+module.exports = mongoose.model('Influencer', influencerSchema);
