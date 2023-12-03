@@ -3,6 +3,9 @@
 ## Overview
 The Influencer-2 project is designed to automate and streamline the workflow of social media influencers and brands engaging in collaborations. It includes AI agents for profile management, brand outreach, content management, PR media, legal advice, CRM scheduling, and strategy analysis. Additionally, it features social media automation, API integration, a user interface built with React and Next.js, and a backend powered by Node.js and MongoDB.
 
+## User Profile Management
+- The `manageUserProfileExtended` function has been implemented to handle extended user profile attributes. It includes attributes such as `new_attribute`.
+
 ## Installation
 To install the project dependencies, navigate to the project root and run:
 ```
