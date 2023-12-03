@@ -15,18 +15,28 @@ appointmentSchedule = []
 
 def manageContacts():
     global contactDatabase
-    contacts = collection.find()
-    for contact in contacts:
-        contactDatabase.append(contact)
+    try:
+        contacts = collection.find()
+        contactDatabase = list(contacts)
+    except Exception as e:
+        print('An error occurred while retrieving contacts:', e)
 
 def scheduleAppointments():
     global appointmentSchedule
+    updated_contacts = []
+    now = datetime.datetime.now()
+    
     for contact in contactDatabase:
-        if 'next_appointment' in contact:
-            if contact['next_appointment'] < datetime.datetime.now():
-                contact['next_appointment'] = datetime.datetime.now() + datetime.timedelta(days=7)
-                appointmentSchedule.append(contact)
+        if 'next_appointment' not in contact or contact['next_appointment'] < now:
+            contact['next_appointment'] = now + datetime.timedelta(days=7)
+            updated_contacts.append(contact)
+    
+    appointmentSchedule.extend(updated_contacts)
+    
+    # Update the contacts in the original database
+    for contact in updated_contacts:
+        collection.update_one({'_id': contact['_id']}, {'$set': {'next_appointment': contact['next_appointment']}})
 
 manageContacts()
 scheduleAppointments()
-```
+

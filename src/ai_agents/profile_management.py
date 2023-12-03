@@ -20,21 +20,23 @@ class UserProfile:
         Initializes a new instance of the UserProfile class.
         """
         # Initialization of UserProfile class
-        pass
+
+        # Actual logic to manage user profile including checks and updating or creating the profile
+        profile_exists = self.check_profile_exists(user_id)
+        if profile_exists:
+            return self.update_profile(user_id, profile_data)
+        else:
+            return self.create_profile(user_id, profile_data)
+
 
     def manageUserProfile(self):
         """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
-        Orchestrates the various operations related to user profiles, such as creating a new profile,
-        retrieving existing profile data, updating profile details, or deleting a profile.
-
-        This method acts as a central point for profile management, delegating specific tasks to
-        other methods and ensuring that the user's profile data is handled correctly.
+        """
+        """
         """
         """
         Orchestrates the various operations related to user profiles, such as creating a new profile,
@@ -44,26 +46,14 @@ class UserProfile:
         other methods and ensuring that the user's profile data is handled correctly.
         """
         """
-        Orchestrates the various operations related to user profiles, such as creating a new profile,
-        retrieving existing profile data, updating profile details, or deleting a profile.
-
-        This method acts as a central point for profile management, delegating specific tasks to
-        other methods and ensuring that the user's profile data is handled correctly.
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
-        """
-        """
-        Manages the user's profile information, including creation, update, and deletion.
         """
         """
         Manages the user's profile information, including creation, update, and deletion.
@@ -72,22 +62,19 @@ class UserProfile:
         Manages the user's profile information, including creation, update, and deletion.
         """
         # Handle user profile management logic
-        pass
+
+        # Actual logic to retrieve user profile information
+        profile = self.get_profile_data(user_id)
+        if profile:
+            return self.format_profile_data(profile)
+        else:
+            return {}
+
 
     def getProfile(self):
         """
-        Retrieves the profile information of a user.
         """
         """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
-
-        Returns:
-            dict: A dictionary containing the user's profile information.
         """
         """
         Retrieves the profile information of a specific user, including their name, bio, social media links,
@@ -106,10 +93,16 @@ class UserProfile:
             dict: A dictionary containing the user's profile information.
         """
         """
-        Retrieves the profile information of a user.
+        Retrieves the profile information of a specific user, including their name, bio, social media links,
+        and media kit. This information is used throughout the Influencer-2 application to personalize
+        the user's experience and facilitate brand collaborations.
+
+        Returns:
+            dict: A dictionary containing the user's profile information.
         """
         """
-        Retrieves the profile information of a user.
+        """
+        """
         """
         """
         Retrieves the profile information of a user.
