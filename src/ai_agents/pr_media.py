@@ -15,140 +15,14 @@ class PRMediaAgent:
 
     def generate_press_release(self, collaboration):
         """
-        Creates a press release for a brand collaboration.
+        Creates a press release for a brand collaboration, announcing the partnership to the public
+        and media outlets. This method is used to generate buzz and inform the audience about the
+        influencer's latest projects.
 
         Parameters:
             collaboration (dict): The brand collaboration data used to craft the press release.
 
-        Returns:
-            dict: A dictionary containing the press release details.
-        """
-        """
-        Generates a press release for a new brand collaboration or event involving the influencer. The press release includes details such as the title, body, and date of the collaboration or event.
 
-        Parameters:
-            collaboration (dict): A dictionary containing information about the brand collaboration or event.
-
-        Returns:
-            dict: A dictionary representing the generated press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media outlets.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration or event involving the influencer. This press release can be used to announce the collaboration to the public and generate media interest.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration or event.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration to the media and public.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration or event involving the influencer. This press release can be distributed to media outlets to increase visibility and awareness.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration or event.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration.
-        This method is essential for public relations and increasing the visibility of the influencer's collaborations.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration. This press release can be distributed to media outlets to increase visibility and awareness.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media.
-        This method is used to generate buzz and inform the audience about the influencer's latest projects.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media outlets.
-        This method is essential for influencers to generate buzz and publicity for their collaborations.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the newly created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership between the influencer and the brand.
-        This press release can be used for media distribution and social media announcements.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership between the influencer
-        and the brand. This press release can be used for media outreach and promotional purposes.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership between the influencer
-        and the brand. This press release can be used for media outreach and promotional purposes.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a given brand collaboration, announcing the partnership between the influencer and the brand.
-        The press release includes a title, body content, and the date of the collaboration.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Generates a press release for a given brand collaboration.
         :param collaboration: The brand collaboration details.
         :return: A dictionary representing the press release.
         """
