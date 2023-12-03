@@ -34,7 +34,26 @@ class AnalystAgent:
     def analyze_strategy(self, input_data):
         self.preprocess_data()
         self.train_model()
-        prediction = self.predict(input_data)
-        performance = self.evaluate_model()
-        return prediction, performance
-```
+        predictions = self.predict(input_data)
+        # Evaluate model performance using multiple metrics
+        mae = metrics.mean_absolute_error(self.y_test, predictions)
+        mse = metrics.mean_squared_error(self.y_test, predictions)
+        r2 = metrics.r2_score(self.y_test, predictions)
+        # Generate actionable insights based on predictions
+        suggested_actions = []
+        for prediction in predictions:
+            if prediction > 0.8:
+                action = 'Consider scaling this strategy up as predictions are highly positive.'
+            elif prediction < 0.3:
+                action = 'Reevaluate the strategy, performance is predicted to be low.'
+            else:
+                action = 'No major changes needed, but consider minor tweaks.'
+            suggested_actions.append(action)
+        # Compile performance metrics
+        performance = {
+            'MAE': mae,
+            'MSE': mse,
+            'R2': r2
+        }
+        # Return a tuple consisting of the predictions, performance metrics, and suggested actions
+        return predictions, performance, suggested_actions
