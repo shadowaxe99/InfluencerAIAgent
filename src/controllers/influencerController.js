@@ -1,7 +1,11 @@
 // Influencer Controller
 
 exports.getInfluencers = (req, res) => {
-  // Logic to get influencers
+  InfluencerModel.find({}).then(influencers => {
+    res.json(influencers);
+  }).catch(err => {
+    res.status(500).send({ message: 'Error retrieving influencers' });
+  });
   res.json({ message: 'Influencers retrieved successfully' });
 };
 
