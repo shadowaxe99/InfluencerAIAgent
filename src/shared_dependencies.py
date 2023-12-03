@@ -7,6 +7,19 @@ def manageUserProfile():
     # TODO: Implement user profile management logic
     return {'name': 'John Doe', 'age': 30, 'occupation': 'Influencer'}
 
+# New function for extended user profile management
+def manageUserProfileExtended():
+    print("Managing extended user profile...")
+    # Implement extended user profile management logic
+    # This is a hypothetical implementation as the actual attributes would depend on the task details
+    extended_profile = {
+        'name': 'John Doe',
+        'age': 30,
+        'occupation': 'Influencer',
+        'new_attribute': 'New Value'
+    }
+    return extended_profile
+
 # Placeholder for brand collaborations management
 def manageBrandCollaborations():
     print("Managing brand collaborations...")
