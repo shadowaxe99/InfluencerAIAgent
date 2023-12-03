@@ -1,3 +1,5 @@
+from brand_matching import BrandMatchingAgent
+
 """
 Module: brand_outreach
 Description: Handles the outreach and collaboration between influencers and brands.
@@ -52,6 +54,10 @@ class BrandCollaboration:
         """
         Manages the collaborations between influencers and brands, including creation, update, and deletion.
         """
+        # Initialize BrandMatchingAgent to match influencers with brands
+        brandMatchingAgent = BrandMatchingAgent()
+        matched_influencers = brandMatchingAgent.match_influencer(n_clusters=5)  # Assuming n_clusters is predefined
+        
         # Initialize PRMediaAgent
         prMediaAgent = PRMediaAgent()
         
