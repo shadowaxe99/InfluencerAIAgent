@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ```python
 from ai_agents.analyst import AnalystAgent
 from ai_agents.brand_outreach import BrandCollaboration
@@ -32,6 +31,11 @@ from timeline.launch import startLaunch
 from timeline.research_planning import startResearchPlanning
 from timeline.testing import startTesting
 from user_interface.ui import renderUI
+
+from ai_agents.audience_engagement import AudienceEngagementAgent
+from ai_agents.market_research import MarketResearchAgent
+from ai_agents.sponsorship_negotiator import SponsorshipNegotiatorAgent
+
 
 
 def main():
@@ -95,26 +99,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-=======
-def main():
-    # Initialize components
-    # ...
+from ai_agents.audience_engagement import AudienceEngagementAgent
+from ai_agents.market_research import MarketResearchAgent
+from ai_agents.sponsorship_negotiator import SponsorshipNegotiatorAgent
 
-    # Execute application logic
-    # ...
-
-    # Example of calling a function
-    # result = some_function()
-
-    # Placeholder for main application logic
-    # This should be replaced with actual logic to initialize and start the application
-    # Initialize database connection
-    # Initialize server
-    # Set up routes
-    # Start server
-    # Any other application initialization logic
-    print('Application started successfully.')
-
-if __name__ == '__main__':
-    main()
->>>>>>> ac62b9b (Initial commit)
