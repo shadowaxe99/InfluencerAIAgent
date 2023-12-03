@@ -15,152 +15,55 @@ class PRMediaAgent:
 
     def generate_press_release(self, collaboration):
         """
-        Creates a press release for a brand collaboration.
-
+        Generates a press release for a brand collaboration, announcing the partnership and providing details about the event to
+        the public and media outlets. This method is essential for public relations, increasing visibility and generating buzz
+        around the influencer's latest projects.
+        
         Parameters:
-            collaboration (dict): The brand collaboration data used to craft the press release.
-
+            collaboration (dict): A dictionary containing details such as the brand, date, and specifics of the collaboration or event.
+        
         Returns:
-            dict: A dictionary containing the press release details.
+            dict: A dictionary representing the created press release, including the title, body, and date.
+            
+        Note:
+            This method assumes the 'collaboration' dictionary contains structured data with appropriate fields. Implementations
+            should include error checking and validation of input parameters.
         """
-        """
-        Generates a press release for a new brand collaboration or event involving the influencer. The press release includes details such as the title, body, and date of the collaboration or event.
 
-        Parameters:
-            collaboration (dict): A dictionary containing information about the brand collaboration or event.
+        # Validate the input parameter 'collaboration'
+        if not isinstance(collaboration, dict):
+            raise ValueError('The collaboration must be a dictionary.')
 
-        Returns:
-            dict: A dictionary representing the generated press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media outlets.
+        required_fields = ['brand', 'date', 'details']
+        missing_fields = [field for field in required_fields if field not in collaboration]
+        if missing_fields:
+            raise ValueError(f"The collaboration dictionary is missing required fields: {', '.join(missing_fields)}")
 
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
+        brand = collaboration.get('brand')
+        date = collaboration.get('date')
+        details = collaboration.get('details')
 
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration or event involving the influencer. This press release can be used to announce the collaboration to the public and generate media interest.
+        if not all([brand, date, details]):
+            raise ValueError('The collaboration dictionary must include non-empty brand, date, and details.')
 
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration or event.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration to the media and public.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration or event involving the influencer. This press release can be distributed to media outlets to increase visibility and awareness.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration or event.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration.
-        This method is essential for public relations and increasing the visibility of the influencer's collaborations.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership and providing details about the collaboration. This press release can be distributed to media outlets to increase visibility and awareness.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media.
-        This method is used to generate buzz and inform the audience about the influencer's latest projects.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details about the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership to the public and media outlets.
-        This method is essential for influencers to generate buzz and publicity for their collaborations.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the newly created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership between the influencer and the brand.
-        This press release can be used for media distribution and social media announcements.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a new brand collaboration, announcing the partnership between the influencer
-        and the brand. This press release can be used for media outreach and promotional purposes.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a specific brand collaboration, announcing the partnership between the influencer
-        and the brand. This press release can be used for media outreach and promotional purposes.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Creates a press release for a given brand collaboration, announcing the partnership between the influencer and the brand.
-        The press release includes a title, body content, and the date of the collaboration.
-
-        Parameters:
-            collaboration (dict): A dictionary containing details of the brand collaboration.
-
-        Returns:
-            dict: A dictionary representing the created press release.
-        """
-        """
-        Generates a press release for a given brand collaboration.
-        :param collaboration: The brand collaboration details.
-        :return: A dictionary representing the press release.
-        """
-        title = f"{self.userProfile.name} collaborates with {collaboration.brand}"
-        body = f"We are excited to announce a new collaboration between {self.userProfile.name} and {collaboration.brand}. Stay tuned for more updates!"
+        # Create the press release using validated 'collaboration' data
+        title = f"{self.userProfile.name} collaborates with {brand}"
+        body = f"We are excited to announce a new collaboration between {self.userProfile.name} and {brand}. {details}"
         press_release = {
-            "title": title,
-            "body": body,
-            "date": collaboration.date
+            'title': title,
+            'body': body,
+            'date': date
         }
-        self.pressReleases.insert_one(press_release)
+
+        # Insert the new press release record into the database and handle potential database errors
+        try:
+            self.pressReleases.insert_one(press_release)
+        except Exception as e:
+            raise Exception(f"Failed to insert the press release into the database: {e}")
+
+        # Return the newly created press release
         return press_release
+
 
     def monitor_media(self, keyword):
         """
