@@ -1,28 +1,49 @@
-// Influencer Controller
-
-exports.getInfluencers = (req, res) => {
-  // Logic to get influencers
-  res.json({ message: 'Influencers retrieved successfully' });
-};
-
-exports.createInfluencer = (req, res) => {
-  // Logic to create a new influencer
-  res.json({ message: 'Influencer created successfully' });
-};
-
-exports.updateInfluencer = (req, res) => {
-  // Logic to update an influencer
-  res.json({ message: 'Influencer updated successfully' });
-};
-
-exports.deleteInfluencer = (req, res) => {
-  const influencerId = req.params.id;
-  // Use InfluencerModel to delete the influencer based on its ID (placeholder).
-  InfluencerModel.findByIdAndRemove(influencerId)
-    .then(() => {
-      res.json({ message: 'Influencer successfully deleted' });
+  // Influencer Controller
+  exports.getInfluencers = (req, res) => {
+    InfluencerModel.find({})
+    .then(influencers => {
+      res.json(influencers);
     })
     .catch(err => {
       res.status(500).json({ error: err.message });
     });
-};
+    res.json({ message: 'Influencers retrieved successfully' });
+  };
+  exports.createInfluencer = (req, res) => {
+      const { name, platform, followers, engagementRate } = req.body;
+    const newInfluencer = new InfluencerModel({ name, platform, followers, engagementRate });
+    newInfluencer.save()
+      .then(() => {
+          })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+    res.json({ message: 'Influencer created successfully' });
+  };
+  exports.updateInfluencer = (req, res) => {
+      const influencerId = req.params.id;
+    const updateData = req.body;
+    InfluencerModel.findByIdAndUpdate(influencerId, updateData, { new: true })
+      .then(updatedInfluencer => {
+        res.json(updatedInfluencer);
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  };
+  exports.deleteInfluencer = (req, res) => {
+    const influencerId = req.params.id;
+        .then(() => {
+        res.json({ message: 'Influencer successfully deleted' });
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+    InfluencerModel.findByIdAndRemove(influencerId)
+      .then(() => {
+        res.json({ message: 'Influencer successfully deleted' });
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  };
