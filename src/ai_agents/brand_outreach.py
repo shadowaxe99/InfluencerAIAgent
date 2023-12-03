@@ -24,52 +24,48 @@ class BrandCollaboration:
 
     def manageBrandCollaborations(self):
         """
-        Manages the collaborations between influencers and brands, including creation, update, and deletion.
-        """
-        """
-        Manages the entire lifecycle of collaborations between influencers and brands, from initiation to conclusion.
-        This includes setting up new collaborations, updating collaboration details, and terminating collaborations
-        when they are completed or no longer relevant.
+        Orchestrates the various operations related to brand collaborations. This method is responsible for managing the entire
+        lifecycle of brand collaborations, which includes creating new collaborations, updating collaboration details such as
+        their status, and terminating the collaborations when they conclude or become irrelevant.
 
-        This method ensures that all collaborations are tracked and managed efficiently, providing a clear
-        overview of ongoing and past collaborations for both influencers and brands.
-        """
-        """
-        Manages the entire lifecycle of collaborations between influencers and brands, from initiation to conclusion.
-        This includes creating new collaborations, updating their status, and removing them when they are no longer active.
+        Parameters:
+            None
 
-        This method ensures that all collaborations are tracked and managed efficiently, providing a clear overview
-        of ongoing and past collaborations for both influencers and brands.
-        """
-        """
-        Orchestrates the various operations related to brand collaborations, such as initiating a new collaboration,
-        retrieving details of existing collaborations, updating the status of ongoing collaborations, or
-        terminating a collaboration.
+        Returns:
+            None
 
-        This method acts as a central point for brand collaboration management, ensuring that collaborations
-        are tracked and managed effectively throughout their lifecycle.
+        Raises:
+            Exception: An error occurred managing the brand collaborations.
         """
         """
         Manages the collaborations between influencers and brands, including creation, update, and deletion.
         """
-        # Initialize PRMediaAgent
-        prMediaAgent = PRMediaAgent()
-        
-        # Create a new brand collaboration
-        new_collaboration = self.createBrandCollaboration()
-        
-        # Create a press release for the new brand collaboration
-        press_release = prMediaAgent.createPressRelease(new_collaboration)
-        
-        # Retrieve the details of the new brand collaboration
-        collaboration_details = self.getCollaborationDetails(new_collaboration)
-        
-        # Update the status of the new brand collaboration
-        updated_status = self.updateCollaborationStatus(new_collaboration, "active")
-        
-        # If the brand collaboration is no longer active, delete it
-        if not updated_status:
-            self.deleteCollaboration(new_collaboration)
+        try:
+            # Initialize PRMediaAgent
+            prMediaAgent = PRMediaAgent()
+            
+            # Create a new brand collaboration and handle potential errors
+            new_collaboration, error = self.createBrandCollaboration()
+            
+            if error:
+                raise Exception(f"Error creating brand collaboration: {error}")
+            
+            # Create a press release for the new brand collaboration
+            press_release = prMediaAgent.createPressRelease(new_collaboration)
+            
+            # Retrieve the details of the new brand collaboration
+            collaboration_details = self.getCollaborationDetails(new_collaboration)
+            
+            # Update the status of the new brand collaboration
+            updated_status = self.updateCollaborationStatus(new_collaboration, "active")
+            
+            # If the brand collaboration is no longer active, delete it
+            if not updated_status:
+                self.deleteCollaboration(new_collaboration)
+        except Exception as e:
+            # Log the exception and re-raise it to handle it at a higher level
+            print(f"An exception occurred in manageBrandCollaborations: {e}")
+            raise
     def getCollaborationDetails(self):
         """
         Retrieves the details of a specific brand collaboration.
