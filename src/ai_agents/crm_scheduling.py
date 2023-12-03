@@ -1,11 +1,13 @@
 
 import datetime
+import os
+
 from pymongo import MongoClient
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['influencer_platform']
-collection = db['contactDatabase']
+client = MongoClient(os.getenv('MONGODB_URI', 'mongodb://localhost:27017/'))
+db = client[os.getenv('MONGODB_DB', 'influencer_platform')]
+collection = db[os.getenv('MONGODB_COLLECTION', 'contactDatabase')]
 
 # Shared variables
 contactDatabase = []

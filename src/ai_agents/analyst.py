@@ -13,11 +13,11 @@ class AnalystAgent:
         self.y_train = None
         self.y_test = None
 
-    def preprocess_data(self):
+    def preprocess_data(self, target_column='strategyInsights'):
         self.data.dropna(inplace=True)
         self.data = pd.get_dummies(self.data)
-        X = self.data.drop('strategyInsights', axis=1)
-        y = self.data['strategyInsights']
+        X = self.data.drop(target_column, axis=1)
+        y = self.data[target_column]
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     def train_model(self):
@@ -31,8 +31,8 @@ class AnalystAgent:
         predictions = self.model.predict(self.X_test)
         return metrics.mean_absolute_error(self.y_test, predictions)
 
-    def analyze_strategy(self, input_data):
-        self.preprocess_data()
+    def analyze_strategy(self, input_data, target_column='strategyInsights'):
+        self.preprocess_data(target_column=target_column)
         self.train_model()
         prediction = self.predict(input_data)
         performance = self.evaluate_model()
