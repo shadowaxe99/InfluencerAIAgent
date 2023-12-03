@@ -16,6 +16,13 @@ exports.updateInfluencer = (req, res) => {
 };
 
 exports.deleteInfluencer = (req, res) => {
-  // Logic to delete an influencer
-  res.json({ message: 'Influencer deleted successfully' });
+  const influencerId = req.params.id;
+  // Use InfluencerModel to delete the influencer based on its ID (placeholder).
+  InfluencerModel.findByIdAndRemove(influencerId)
+    .then(() => {
+      res.json({ message: 'Influencer successfully deleted' });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 };
