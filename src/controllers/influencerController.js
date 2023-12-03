@@ -6,31 +6,30 @@ exports.getInfluencers = (req, res) => {
 };
 
 exports.createInfluencer = (req, res) => {
-  // Validate the incoming request data
-  if (!req.body.name || !req.body.socialMediaHandle) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
-
-  // Use InfluencerModel to create a new influencer
-  const influencerData = {
-    name: req.body.name,
-    socialMediaHandle: req.body.socialMediaHandle,
-    followers: req.body.followers
-  };
-
-  InfluencerModel.create(influencerData).then(newInfluencer => {
-    res.status(201).json({
-      message: 'Influencer created successfully',
-      influencer: newInfluencer
-    });
-  }).catch(err => {
-    res.status(500).json({ message: 'Error creating influencer', error: err.message });
-  });
+  // Logic to create a new influencer
+  res.json({ message: 'Influencer created successfully' });
 };
 
 exports.updateInfluencer = (req, res) => {
-  // Logic to update an influencer
-  res.json({ message: 'Influencer updated successfully' });
+// Validate the incoming request data
+if (!req.body.id || !req.body.name || !req.body.socialMediaHandle) {
+  return res.status(400).json({ message: 'Missing required fields' });
+}
+
+// Use InfluencerModel to update an existing influencer
+InfluencerModel.findByIdAndUpdate(req.body.id, {
+  name: req.body.name,
+  socialMediaHandle: req.body.socialMediaHandle,
+  followers: req.body.followers
+}, { new: true }).then(updatedInfluencer => {
+  res.json({
+    message: 'Influencer updated successfully',
+    influencer: updatedInfluencer
+  });
+}).catch(err => {
+  res.status(500).json({ message: 'Error updating influencer', error: err.message });
+});
+
 };
 
 exports.deleteInfluencer = (req, res) => {
