@@ -1,5 +1,5 @@
-
-import pandas as pd
+from market_trends_analysis import MarketTrendsAnalysisAgent
+pandas as pd
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -30,6 +30,13 @@ class AnalystAgent:
     def evaluate_model(self):
         predictions = self.model.predict(self.X_test)
         return metrics.mean_absolute_error(self.y_test, predictions)
+
+    def incorporate_market_trends(self, market_trend_data):
+        market_trends_agent = MarketTrendsAnalysisAgent(market_trend_data)
+        market_trends_agent.ingest_data()
+        market_trends_agent.preprocess_data(target_column='trend')
+        market_trends_agent.analyze_trends()
+        return market_trends_agent.report_findings()
 
     def analyze_strategy(self, input_data, target_column='strategyInsights'):
         self.preprocess_data(target_column=target_column)
