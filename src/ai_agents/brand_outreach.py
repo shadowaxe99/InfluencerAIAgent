@@ -26,14 +26,7 @@ class BrandCollaboration:
         """
         Manages the collaborations between influencers and brands, including creation, update, and deletion.
         """
-        """
-        Manages the entire lifecycle of collaborations between influencers and brands, from initiation to conclusion.
-        This includes setting up new collaborations, updating collaboration details, and terminating collaborations
-        when they are completed or no longer relevant.
-
-        This method ensures that all collaborations are tracked and managed efficiently, providing a clear
-        overview of ongoing and past collaborations for both influencers and brands.
-        """
+       
         """
         Manages the entire lifecycle of collaborations between influencers and brands, from initiation to conclusion.
         This includes creating new collaborations, updating their status, and removing them when they are no longer active.
