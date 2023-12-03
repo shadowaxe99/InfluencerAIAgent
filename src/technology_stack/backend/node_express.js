@@ -11,17 +11,31 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Define routes
-app.get('/api/profile', (req, res) => {
-  // Handle profile retrieval
-  UserProfile.find()
-    .then(profile => res.json(profile))
+app.get('/api/influencers', (req, res) => {
+  // Handle single influencer retrieval
+  // TODO: Add logic to find a specific influencer once the identification logic is implemented
+  UserProfile.findOne()
+    .then(profile => {
+      if(profile) {
+        res.json(profile);
+      } else {
+        res.status(404).json({ error: 'Influencer not found' });
+      }
+    })
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-app.get('/api/collaborations', (req, res) => {
-  // Handle collaborations retrieval
-  BrandCollaboration.find()
-    .then(collaborations => res.json(collaborations))
+app.get('/api/influencers/collaborations', (req, res) => {
+  // Handle collaborations retrieval for a specific influencer
+  // TODO: Add logic to find collaborations for a specific influencer once the identification logic is implemented
+  BrandCollaboration.findOne() // Assuming we want to retrieve a single collaboration for an example
+    .then(collaboration => {
+      if(collaboration) {
+        res.json([collaboration]); // Wrap it in an array to match the front-end expectation
+      } else {
+        res.status(404).json({ error: 'Collaborations for the influencer not found' });
+      }
+    })
     .catch(err => res.status(500).json({ error: err.message }));
 });
 

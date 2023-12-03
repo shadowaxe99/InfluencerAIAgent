@@ -19,12 +19,12 @@ class UserAcceptanceTests(unittest.TestCase):
 
     def test_profile_page(self):
         # Test the profile page functionality
-        self.driver.get(f'{BASE_URL}/profile')
+        self.driver.get(f'{BASE_URL}/influencer/profile')
         # Actual test implementation needed
 
     def test_collaborations_page(self):
         # Test the collaborations page functionality
-        self.driver.get(f'{BASE_URL}/collaborations')
+        self.driver.get(f'{BASE_URL}/influencer/collaborations')
         # Actual test implementation needed
 
     def test_content_ideas_page(self):
