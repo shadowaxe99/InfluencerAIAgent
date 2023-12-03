@@ -1,3 +1,5 @@
+from ai_agents.social_media_monitoring import SocialMediaMonitoringAgent
+
 """
 Module: profile_management
 Description: Manages influencer profiles within the application.
@@ -15,12 +17,11 @@ class UserProfile:
     """
     Represents the user profile within the application and provides methods to manage it.
     """
-    def __init__(self):
+    def __init__(self, api_key, base_url):
         """
         Initializes a new instance of the UserProfile class.
         """
-        # Initialization of UserProfile class
-        pass
+        self.social_media_monitoring_agent = SocialMediaMonitoringAgent(api_key, base_url)
 
     def manageUserProfile(self):
         """
@@ -78,56 +79,22 @@ class UserProfile:
         """
         Retrieves the profile information of a user.
         """
-        """
-        Retrieves the profile information of a user.
-        """
+    def getProfile(self, influencer_id):
         """
         Retrieves the profile information of a specific user, including their name, bio, social media links,
         and media kit. This information is used throughout the Influencer-2 application to personalize
         the user's experience and facilitate brand collaborations.
 
-        Returns:
-            dict: A dictionary containing the user's profile information.
-        """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
+        Additionally, it uses the SocialMediaMonitoringAgent to gather data on the influencer's social media presence and engagement.
 
         Returns:
             dict: A dictionary containing the user's profile information.
-        """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
-
-        Returns:
-            dict: A dictionary containing the user's profile information.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
-        """
-        """
-        Retrieves the profile information of a user.
         """
         # Retrieve the profile information of a user
-        pass
+        profile_info = {}  # Replace this with actual logic to retrieve profile info
+        social_media_data = self.social_media_monitoring_agent.gather_data(influencer_id)
+        profile_info['social_media_data'] = social_media_data
+        return profile_info
 
     def updateProfile(self):
         """
