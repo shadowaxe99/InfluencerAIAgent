@@ -20,7 +20,17 @@ class UserProfile:
         Initializes a new instance of the UserProfile class.
         """
         # Initialization of UserProfile class
-        pass
+
+        """
+        Retrieves the profile information of a user.
+        
+        Returns:
+            dict: A dictionary containing the user's profile information.
+        """
+        # TODO: Implement logic to retrieve user profile from the database
+        # This is a placeholder return statement and should be replaced with actual data retrieval
+        return {'name': 'John Doe', 'email': 'johnd@example.com', 'age': 30}
+
 
     def manageUserProfile(self):
         """
