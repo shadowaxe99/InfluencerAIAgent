@@ -1,5 +1,7 @@
-import React from 'react';
-import axios from 'axios';
+import 'axios'
+import 'react'
+import axios
+import React
 
 # Define React components for the frontend
 
@@ -7,12 +9,12 @@ class UserProfile extends React.Component {
   state = { profile: null };
 
   componentDidMount() {
-    axios.get('/api/profile')
+    axios.get('/api/influencers')
       .then(response => {
-        this.setState({ profile: response.data });
+        this.setState({ profile: response.data[0] });
       })
       .catch(error => {
-        console.error('Error fetching user profile:', error);
+        console.error('Error fetching influencer profile:', error);
       });
   }
 
@@ -21,7 +23,10 @@ class UserProfile extends React.Component {
     return (
       <div>
         {this.state.profile ? (
-          // Render the profile information
+          <div>
+            <h2>{this.state.profile.name}</h2>
+            <p>{this.state.profile.bio}</p>
+          </div>
         ) : (
           <p>Loading profile...</p>
         )}
@@ -34,12 +39,12 @@ class BrandCollaborations extends React.Component {
   state = { collaborations: [] };
 
   componentDidMount() {
-    axios.get('/api/collaborations')
+    axios.get('/api/influencers')
       .then(response => {
-        this.setState({ collaborations: response.data });
+        this.setState({ collaborations: response.data[0].collaborations });
       })
       .catch(error => {
-        console.error('Error fetching brand collaborations:', error);
+        console.error('Error fetching influencer collaborations:', error);
       });
   }
 
@@ -48,7 +53,11 @@ class BrandCollaborations extends React.Component {
     return (
       <div>
         {this.state.collaborations.length > 0 ? (
-          // Render the collaborations information
+          <ul>
+            {this.state.collaborations.map(collaboration => (
+              <li key={collaboration.id}>{collaboration.brand}</li>
+            ))}
+          </ul>
         ) : (
           <p>Loading collaborations...</p>
         )}
@@ -84,6 +93,10 @@ class ContentIdeas extends React.Component {
   }
 }
 
+// ... define other React components
+
+// Export components
+export { UserProfile, BrandCollaborations, ContentIdeas };
 // ... define other React components
 
 // Export components
