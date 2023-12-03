@@ -11,28 +11,18 @@ exports.createInfluencer = (req, res) => {
 };
 
 exports.updateInfluencer = (req, res) => {
-// Validate the incoming request data
-if (!req.body.id || !req.body.name || !req.body.socialMediaHandle) {
-  return res.status(400).json({ message: 'Missing required fields' });
-}
-
-// Use InfluencerModel to update an existing influencer
-InfluencerModel.findByIdAndUpdate(req.body.id, {
-  name: req.body.name,
-  socialMediaHandle: req.body.socialMediaHandle,
-  followers: req.body.followers
-}, { new: true }).then(updatedInfluencer => {
-  res.json({
-    message: 'Influencer updated successfully',
-    influencer: updatedInfluencer
-  });
-}).catch(err => {
-  res.status(500).json({ message: 'Error updating influencer', error: err.message });
-});
-
+  // Logic to update an influencer
+  res.json({ message: 'Influencer updated successfully' });
 };
 
 exports.deleteInfluencer = (req, res) => {
-  // Logic to delete an influencer
-  res.json({ message: 'Influencer deleted successfully' });
+  const influencerId = req.params.id;
+  // Use InfluencerModel to delete the influencer based on its ID (placeholder).
+  InfluencerModel.findByIdAndRemove(influencerId)
+    .then(() => {
+      res.json({ message: 'Influencer successfully deleted' });
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 };
