@@ -1,7 +1,8 @@
 import nltk
+from joblib import Parallel, delayed
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -22,6 +23,7 @@ class ContentManagementAgent:
     def preprocess_text(self, text):
         """
         Prepares text data for content idea generation by tokenizing and lemmatizing.
+        This method has been optimized to handle large volumes of text efficiently.
 
         Parameters:
             text (str): The text to be preprocessed.
@@ -29,17 +31,23 @@ class ContentManagementAgent:
         Returns:
             list: A list of lemmatized tokens without stopwords.
         """
+        sentences = sent_tokenize(text)
+        lemmatized_tokens = Parallel(n_jobs=-1)(delayed(self.lemmatize_sentence)(sentence) for sentence in sentences)
+        return lemmatized_tokens
+
+    def lemmatize_sentence(self, sentence):
         """
-        Processes the given text by tokenizing and lemmatizing it, and removing stopwords to prepare for content idea generation.
+        Lemmatizes a sentence by tokenizing and lemmatizing each word, and removing stopwords.
 
         Parameters:
-            text (str): The text to be processed.
+            sentence (str): The sentence to be lemmatized.
 
         Returns:
-            list: A list of processed tokens from the text.
+            list: A list of lemmatized tokens without stopwords.
         """
-        word_tokens = word_tokenize(text)
+        word_tokens = word_tokenize(sentence)
         lemmatized_tokens = [self.lemmatizer.lemmatize(w) for w in word_tokens if not w in self.stop_words]
+        return lemmatized_tokens
         return lemmatized_tokens
 
         """
@@ -163,6 +171,17 @@ class ContentManagementAgent:
 
         Parameters:
             userProfile (UserProfile): The influencer's user profile containing their interests, niche, and audience demographics.
+    def input_content_ideas(self):
+        """
+        Provides an interface for influencers to input and receive content suggestions.
+
+        Returns:
+            list: A list of generated content ideas.
+        """
+        text = input("Please enter your text: ")
+        preprocessed_text = self.preprocess_text(text)
+        content_ideas = self.generate_content_ideas(preprocessed_text)
+        return content_ideas
             brandCollaborations (list): A list of active brand collaborations associated with the influencer.
 
         Returns:
