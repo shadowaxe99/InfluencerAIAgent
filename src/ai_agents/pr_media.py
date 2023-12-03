@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from technology_stack.backend.database.mongodb import UserProfileSchema, PressReleaseSchema
+from technology_stack.backend.database.mongodb import (PressReleaseSchema,
+                                                       UserProfileSchema)
+
 
 class PRMediaAgent:
     """
@@ -137,8 +139,7 @@ class PRMediaAgent:
         Returns:
             dict: A dictionary representing the created press release.
         """
-        """
-        Creates a press release for a given brand collaboration, announcing the partnership between the influencer and the brand.
+        Generates a press release for a given brand collaboration, announcing the partnership between the influencer and the brand.
         The press release includes a title, body content, and the date of the collaboration.
 
         Parameters:
@@ -147,17 +148,12 @@ class PRMediaAgent:
         Returns:
             dict: A dictionary representing the created press release.
         """
-        """
-        Generates a press release for a given brand collaboration.
-        :param collaboration: The brand collaboration details.
-        :return: A dictionary representing the press release.
-        """
-        title = f"{self.userProfile.name} collaborates with {collaboration.brand}"
-        body = f"We are excited to announce a new collaboration between {self.userProfile.name} and {collaboration.brand}. Stay tuned for more updates!"
+        title = f"{self.userProfile.name} collaborates with {collaboration['brand']}"
+        body = f"We are excited to announce a new collaboration between {self.userProfile.name} and {collaboration['brand']}. Stay tuned for more updates!"
         press_release = {
             "title": title,
             "body": body,
-            "date": collaboration.date
+            "date": collaboration['date']
         }
         self.pressReleases.insert_one(press_release)
         return press_release
@@ -181,6 +177,18 @@ class PRMediaAgent:
         Returns:
             list: A list of headlines or articles where the keyword is mentioned.
         """
+    def distribute_press_release(self, press_release):
+        """
+        Distributes the press release to social media and press outlets.
+
+        Parameters:
+            press_release (dict): A dictionary representing the press release.
+
+        Returns:
+            bool: True if the distribution was successful, False otherwise.
+        """
+        # This is a placeholder and should be replaced with actual distribution logic
+        return True
         """
         Monitors media outlets for mentions of the influencer or related keywords, helping to track the influencer's media presence and public perception.
 
