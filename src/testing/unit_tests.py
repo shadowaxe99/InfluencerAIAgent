@@ -22,6 +22,12 @@ class UnitTests(unittest.TestCase):
         # Test the creation of user profiles
         pass
 
+    def test_user_profile_extended_creation(self):
+        # Test the creation of extended user profiles
+        extended_profile = manageUserProfileExtended()
+        self.assertIsNotNone(extended_profile['new_attribute'])
+        self.assertEqual(extended_profile['new_attribute'], 'New Value')
+
     def test_brand_collaboration_creation(self):
         # Test the creation of brand collaborations
         pass
