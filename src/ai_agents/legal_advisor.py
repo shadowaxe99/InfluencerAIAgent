@@ -1,23 +1,30 @@
-from typing import Dict
+from typing import Dict, List
+
 from technology_stack.backend.database.mongodb import LegalAdviceSchema
+
 
 class LegalAdvisor:
     """
     Provides legal advice and contract templates for influencers to use in brand collaborations.
     """
-    def __init__(self, db):
+    def __init__(self, db, contract_templates: List[str], legal_faqs: Dict[str, str]):
         """
         Initializes a new instance of the LegalAdvisor class.
         :param db: The database connection to use.
+        :param contract_templates: A list of contract templates.
+        :param legal_faqs: A dictionary of frequently asked legal questions and their answers.
         """
         self.db = db
+        self.contract_templates = contract_templates
+        self.legal_faqs = legal_faqs
 
     def provide_legal_advice(self, user_id: str) -> Dict:
         """
-        Offers legal advice to influencers based on their user profiles, helping them navigate the complexities of contracts and legal agreements.
+        Offers personalized legal advice to influencers based on their user profiles and activities, helping them navigate the complexities of contracts and legal agreements.
 
         Parameters:
             user_id (str): The unique identifier of the influencer seeking legal advice.
+            user_activities (Dict): A dictionary containing the influencer's activities.
 
         Returns:
             Dict: A dictionary containing the legal advice or an error message if no advice is found.
@@ -25,7 +32,11 @@ class LegalAdvisor:
         legal_advice = self.db.find_one("legal_advice", {"user_id": user_id})
         if not legal_advice:
             return {"error": "No legal advice found for this user."}
-        return legal_advice
+        
+        # Personalize the legal advice based on the user's activities
+        personalized_advice = self.personalize_advice(legal_advice, user_activities)
+        
+        return personalized_advice
 
         """
         Offers legal advice to the influencer based on their user ID. This advice can cover various aspects of influencer marketing, such as contracts, intellectual property, and compliance with regulations.
@@ -48,6 +59,19 @@ class LegalAdvisor:
         """
         """
         Provides legal advice for a given user.
+    def personalize_advice(self, legal_advice: Dict, user_activities: Dict) -> Dict:
+        """
+        Personalizes the legal advice based on the influencer's activities.
+
+        Parameters:
+            legal_advice (Dict): The original legal advice.
+            user_activities (Dict): The influencer's activities.
+
+        Returns:
+            Dict: The personalized legal advice.
+        """
+        # This is a placeholder and should be replaced with actual personalization logic
+        return legal_advice
         :param user_id: The ID of the user to provide legal advice for.
         :return: A dictionary containing the legal advice.
         """
