@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import InfluencerList from '../components/InfluencerList';
 
 function Dashboard() {
-  // Placeholder data
-  const influencers = [
-    { id: 1, name: 'Influencer One', description: 'Description for Influencer One' },
-    { id: 2, name: 'Influencer Two', description: 'Description for Influencer Two' },
-    // More influencers...
-  ];
+  const [influencers, setInfluencers] = useState([]);
+  
+  useEffect(() => {
+    axios.get('/api/influencers')
+      .then(response => {
+        setInfluencers(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
 
   return (
     <div>
