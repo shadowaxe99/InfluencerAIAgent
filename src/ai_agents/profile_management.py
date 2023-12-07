@@ -29,46 +29,38 @@ class UserProfile:
             return self.create_profile(user_id, profile_data)
 
 
-    def manageUserProfile(self):
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
+    def manageUserProfile(self, user_id, profile_data):
         """
         Orchestrates the various operations related to user profiles, such as creating a new profile,
         retrieving existing profile data, updating profile details, or deleting a profile.
 
         This method acts as a central point for profile management, delegating specific tasks to
         other methods and ensuring that the user's profile data is handled correctly.
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        """
-        Manages the user's profile information, including creation, update, and deletion.
-        """
-        """
-        Manages the user's profile information, including creation, update, and deletion.
+
+        Parameters:
+            user_id (str): The unique identifier of the user.
+            profile_data (dict): A dictionary containing the profile information.
+
+        Returns:
+            dict: The updated profile information.
         """
         # Handle user profile management logic
+        from pymongo import MongoClient
+        client = MongoClient('mongodb_connection_string')
+        db = client['database_name']
 
-        # Actual logic to retrieve user profile information
-        profile = self.get_profile_data(user_id)
+        # Check if the profile exists
+        profile = db.profiles.find_one({'user_id': user_id})
         if profile:
-            return self.format_profile_data(profile)
+            # Update the profile
+            db.profiles.update_one({'user_id': user_id}, {'$set': profile_data})
         else:
-            return {}
+            # Create a new profile
+            db.profiles.insert_one({'user_id': user_id, **profile_data})
+
+        # Retrieve the updated profile information
+        profile = db.profiles.find_one({'user_id': user_id})
+        return profile
 
 
     def getProfile(self):
@@ -76,31 +68,20 @@ class UserProfile:
         """
         """
         """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
+
+        Parameters:
+            user_id (str): The unique identifier of the user.
 
         Returns:
             dict: A dictionary containing the user's profile information.
         """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
+        from pymongo import MongoClient
+        client = MongoClient('mongodb_connection_string')
+        db = client['database_name']
 
-        Returns:
-            dict: A dictionary containing the user's profile information.
-        """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
-
-        Returns:
-            dict: A dictionary containing the user's profile information.
-        """
-        """
+        # Retrieve the profile information
+        profile = db.profiles.find_one({'user_id': user_id})
+        return profile
         """
         """
         """
