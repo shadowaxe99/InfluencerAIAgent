@@ -3,17 +3,22 @@
 // This service would interact with the database to manage influencer data
 
 exports.findAllInfluencers = () => {
-  // Logic to find all influencers
+  const Influencer = require('../models/influencer');
+  return Influencer.find({});
 };
 
 exports.createInfluencer = (influencerData) => {
-  // Logic to create a new influencer
+  const Influencer = require('../models/influencer');
+  let influencer = new Influencer(influencerData);
+  return influencer.save();
 };
 
 exports.updateInfluencer = (id, influencerData) => {
-  // Logic to update an influencer
+  const Influencer = require('../models/influencer');
+  return Influencer.findByIdAndUpdate(id, influencerData, { new: true });
 };
 
 exports.deleteInfluencer = (id) => {
-  // Logic to delete an influencer
+  const Influencer = require('../models/influencer');
+  return Influencer.findByIdAndRemove(id);
 };
