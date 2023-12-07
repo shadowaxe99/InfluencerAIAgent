@@ -1,28 +1,22 @@
 // Influencer Controller
 
 exports.getInfluencers = (req, res) => {
-  // Logic to get influencers
-  res.json({ message: 'Influencers retrieved successfully' });
+  influencerService.findAllInfluencers().then(influencers => res.json(influencers)).catch(err => res.status(500).json({ error: err.message }))
+  
 };
 
 exports.createInfluencer = (req, res) => {
-  // Logic to create a new influencer
-  res.json({ message: 'Influencer created successfully' });
+  influencerService.createInfluencer(req.body).then(influencer => res.json(influencer)).catch(err => res.status(500).json({ error: err.message }))
+  
 };
 
 exports.updateInfluencer = (req, res) => {
-  // Logic to update an influencer
-  res.json({ message: 'Influencer updated successfully' });
+  const influencerId = req.params.id; influencerService.updateInfluencer(influencerId, req.body).then(() => res.json({ message: 'Influencer updated successfully' })).catch(err => res.status(500).json({ error: err.message }))
+  
 };
 
 exports.deleteInfluencer = (req, res) => {
   const influencerId = req.params.id;
-  // Use InfluencerModel to delete the influencer based on its ID (placeholder).
-  InfluencerModel.findByIdAndRemove(influencerId)
-    .then(() => {
-      res.json({ message: 'Influencer successfully deleted' });
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
+  influencerService.deleteInfluencer(influencerId).then(() => res.json({ message: 'Influencer successfully deleted' })).catch(err => res.status(500).json({ error: err.message }))
+  
 };
