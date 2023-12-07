@@ -3,17 +3,25 @@
 // This service would interact with the database to manage influencer data
 
 exports.findAllInfluencers = () => {
-  // Logic to find all influencers
+  // Connect to the MongoDB database
+  const db = require('./db');
+  return db.getInfluencersCollection().find({});
 };
 
 exports.createInfluencer = (influencerData) => {
-  // Logic to create a new influencer
+  // Connect to the MongoDB database
+  const db = require('./db');
+  return db.getInfluencersCollection().insertOne(influencerData);
 };
 
 exports.updateInfluencer = (id, influencerData) => {
-  // Logic to update an influencer
+  // Connect to the MongoDB database
+  const db = require('./db');
+  return db.getInfluencersCollection().updateOne({ _id: id }, { $set: influencerData });
 };
 
 exports.deleteInfluencer = (id) => {
-  // Logic to delete an influencer
+  // Connect to the MongoDB database
+  const db = require('./db');
+  return db.getInfluencersCollection().deleteOne({ _id: id });
 };
