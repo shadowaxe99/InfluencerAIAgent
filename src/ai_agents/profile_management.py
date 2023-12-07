@@ -56,39 +56,27 @@ class UserProfile:
         """
         """
         """
-        Manages the user's profile information, including creation, update, and deletion.
-        """
-        """
-        Manages the user's profile information, including creation, update, and deletion.
-        """
-        # Handle user profile management logic
-
-        # Actual logic to retrieve user profile information
-        profile = self.get_profile_data(user_id)
-        if profile:
-            return self.format_profile_data(profile)
-        else:
-            return {}
-
-
-    def getProfile(self):
-        """
-        """
-        """
-        """
         """
         Retrieves the profile information of a specific user, including their name, bio, social media links,
         and media kit. This information is used throughout the Influencer-2 application to personalize
         the user's experience and facilitate brand collaborations.
+
+        Parameters:
+            user_id (str): The unique identifier of the user.
 
         Returns:
             dict: A dictionary containing the user's profile information.
         """
-        """
-        Retrieves the profile information of a specific user, including their name, bio, social media links,
-        and media kit. This information is used throughout the Influencer-2 application to personalize
-        the user's experience and facilitate brand collaborations.
-
+        try:
+            # Retrieve the profile information
+            profile = self.get_profile_data(user_id)
+            if profile:
+                return self.format_profile_data(profile)
+            else:
+                raise ValueError("No profile exists for the provided user_id.")
+        except Exception as e:
+            print(f"An error occurred while retrieving the user profile: {e}")
+            return None
         Returns:
             dict: A dictionary containing the user's profile information.
         """
