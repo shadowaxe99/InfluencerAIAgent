@@ -1,16 +1,19 @@
-# This module would contain logic to measure user engagement metrics.
-
-# Placeholder for user engagement measurement logic
+from pymongo import MongoClient
 
 def measure_user_engagement():
-    # Implement logic to measure and analyze user engagement
-    # Example implementation (to be replaced with real logic):
-    # Connect to the MongoDB database
-    from pymongo import MongoClient
-    client = MongoClient('mongodb_connection_string')
-    db = client['database_name']
-    # Retrieve user interactions from 'user_interactions' collection
-    interactions = db.user_interactions.find({})
+    # Replace with your actual MongoDB connection string and database name
+    mongo_connection_string = 'mongo_connection_string'  # Replace with your MongoDB connection string
+    database_name = 'mydatabase'  # Replace with your database name
+
+    client = MongoClient(mongo_connection_string)
+    db = client[database_name]
+
+    # Choose the appropriate collection name
+    interactions_collection = db.interactions  # Replace with your collection name
+
+    # Retrieve user interactions from the collection
+    interactions = interactions_collection.find({})
+
     # Initialize engagement metrics
     engagement_metrics = {
         'total_interactions': 0,
@@ -18,16 +21,21 @@ def measure_user_engagement():
         'comment_count': 0,
         'share_count': 0
     }
+
     # Calculate engagement metrics based on interactions
     for interaction in interactions:
         engagement_metrics['total_interactions'] += 1
-        if interaction.get('type') == 'like':
+        interaction_type = interaction.get('type')
+        if interaction_type == 'like':
             engagement_metrics['like_count'] += 1
-        elif interaction.get('type') == 'comment':
+        elif interaction_type == 'comment':
             engagement_metrics['comment_count'] += 1
-        elif interaction.get('type') == 'share':
+        elif interaction_type == 'share':
             engagement_metrics['share_count'] += 1
+
     return engagement_metrics
 
 # Example usage:
-# engagement_metrics = measure_user_engagement()
+engagement_metrics = measure_user_engagement()
+print(f"Engagement Metrics: {engagement_metrics}")
+
