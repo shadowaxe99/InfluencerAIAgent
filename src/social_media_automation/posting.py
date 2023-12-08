@@ -1,6 +1,7 @@
 import requests
 from src.shared_dependencies import generateContentIdeas
 
+
 def autoPostContent(platform_api_keys):
     content_ideas = generateContentIdeas()
     for idea in content_ideas:
@@ -11,16 +12,16 @@ def autoPostContent(platform_api_keys):
                 json={"content": idea}
             )
             if response.status_code != 200:
-                print(f"Failed to post content on {platform}.")
+                raise Exception(f"Failed to post content on {platform}. Status code: {response.status_code}")
             else:
                 print(f"Successfully posted content on {platform}.")
 
 def scheduleAutoPosting(platform_api_keys, schedule_time):
+
+def scheduleAutoPosting(platform_api_keys, schedule_time):
     # This function uses a scheduler like 'schedule' or 'APScheduler' to run the autoPostContent function at the given schedule_time
     # Please install the required scheduler package and import it at the top of this file
-    # Below is a pseudo code
-    # schedule.every().day.at(schedule_time).do(autoPostContent, platform_api_keys)
-    pass  # Placeholder for actual scheduling logic
+    schedule.every().day.at(schedule_time).do(autoPostContent, platform_api_keys)
 
 def main():
     platform_api_keys = {
