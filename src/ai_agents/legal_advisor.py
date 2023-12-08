@@ -105,6 +105,12 @@ class LegalAdvisor:
         return {"success": "Legal advice updated successfully."}
 
     def delete_legal_advice(self, user_id: str) -> Dict:
+        existing_advice = self.db.find_one("legal_advice", {"user_id": user_id})
+        if not existing_advice:
+            return {"error": f"No legal advice found for user ID {user_id}."}
+        existing_advice = self.db.find_one("legal_advice", {"user_id": user_id})
+        if not existing_advice:
+            return {"error": f"No legal advice found for user ID {user_id}."}
         """
         Removes legal advice from the database, typically when it is no longer needed or if the influencer wishes to withdraw their profile.
 
