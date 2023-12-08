@@ -1,8 +1,9 @@
 
 import pandas as pd
 from sklearn import metrics
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+
 
 class AnalystAgent:
     """
@@ -58,6 +59,7 @@ class AnalystAgent:
         # Run the full analysis pipeline on the provided input data, targeting a specific column for insights.
         self.preprocess_data(target_column=target_column)  # Preprocess the data with the specified target column.
         self.train_model()  # Train the model with the preprocessed data.
+        input_data = pd.get_dummies(pd.DataFrame(input_data))  # Convert the input data to dummy/indicator variables.
         prediction = self.predict(input_data)  # Make a prediction based on the input data.
         performance = self.evaluate_model()  # Evaluate the model's performance.
         return prediction, performance  # Return both the prediction and the performance metric.
