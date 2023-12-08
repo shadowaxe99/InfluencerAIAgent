@@ -116,7 +116,7 @@ class LegalAdvisor:
         """
         result = self.db.delete_one("legal_advice", {"user_id": user_id})
         if result.deleted_count == 0:
-            return {"error": "Legal advice could not be deleted."}
+            raise Exception("Legal advice could not be deleted.")
         return {"success": "Legal advice deleted successfully."}
 
         """
