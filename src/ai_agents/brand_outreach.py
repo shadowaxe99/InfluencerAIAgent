@@ -93,11 +93,22 @@ class BrandCollaboration:
         Returns:
             dict: A dictionary containing the details of the brand collaboration.
         """
-        """
         Retrieves the details of a specific collaboration.
+        
+        Parameters:
+            collaboration_id (str): The unique identifier of the collaboration to be retrieved.
+            
+        Returns:
+            dict: A dictionary containing the details of the collaboration.
         """
         # Retrieve the details of a specific collaboration
-        pass
+        def getCollaborationDetails(self, collaboration_id):
+            # Assuming we have a database connection established
+            # and a 'collaborations' table with the relevant details
+            query = "SELECT * FROM collaborations WHERE id = %s"
+            cursor.execute(query, (collaboration_id,))
+            collaboration_details = cursor.fetchone()
+            return collaboration_details
 
     def updateCollaborationStatus(self):
         """
@@ -136,15 +147,26 @@ class BrandCollaboration:
 
         Parameters:
             collaboration_data (dict): A dictionary containing the updated status and other relevant information.
-
         Returns:
             bool: True if the update was successful, False otherwise.
         """
-        """
         Updates the status of a collaboration.
+        
+        Parameters:
+            collaboration_id (str): The unique identifier of the collaboration to be updated.
+            new_status (str): The new status to be applied to the collaboration.
+            
+        Returns:
+            bool: True if the update was successful, False otherwise.
         """
         # Update the status of a collaboration
-        pass
+        def updateCollaborationStatus(self, collaboration_id, new_status):
+            # Assuming we have a database connection established
+            # and a 'collaborations' table with the relevant details
+            query = "UPDATE collaborations SET status = %s WHERE id = %s"
+            cursor.execute(query, (new_status, collaboration_id))
+            db.commit()
+            return cursor.rowcount > 0
 
     def deleteCollaboration(self):
         """
