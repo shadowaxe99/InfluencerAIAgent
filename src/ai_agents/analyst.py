@@ -39,9 +39,9 @@ class AnalystAgent:
         # Split the data into training and testing sets with a 80-20 split.
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    def train_model(self):
+    def train_model(self, model):
         # Train the predictive model using the preprocessed training data.
-        self.model = RandomForestRegressor(n_estimators=100, random_state=42) # Create an instance of the RandomForestRegressor.
+        self.model = model
         self.model.fit(self.X_train, self.y_train) # Fit the model to the training data.
 
     def predict(self, input_data):
