@@ -114,9 +114,14 @@ class LegalAdvisor:
         Returns:
             Dict: A dictionary indicating the success or failure of the deletion operation.
         """
+        # Check if user_id exists before deleting
+        existing_advice = self.db.find_one("legal_advice", {"user_id": user_id})
+        if not existing_advice:
+            return {"error": "No legal advice found for this user. Nothing to delete."}
+        
         result = self.db.delete_one("legal_advice", {"user_id": user_id})
         if result.deleted_count == 0:
-            return {"error": "Legal advice could not be deleted."}
+            return {"error": "Legal advice could not be deleted, but was found."}
         return {"success": "Legal advice deleted successfully."}
 
         """
