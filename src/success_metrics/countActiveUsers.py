@@ -1,20 +1,21 @@
-# This module would contain logic to count the number of active users.
-
-# Placeholder for active user counting logic
+from pymongo import MongoClient
 
 def count_active_users():
-    # Implement logic to count and report the number of active users
-    # Example implementation (to be replaced with real logic):
-    # Query the database to get the list of active users
-    # Connect to the MongoDB database
-    from pymongo import MongoClient
-    client = MongoClient('mongo_connection_string')  # replace with proper MongoDB connection string
-    db = client['mydatabase']  # replace with your database name
-    active_users_collection = db.active_users  # replace with your collection name
+    # Replace with your actual MongoDB connection string and database name
+    mongo_connection_string = 'mongo_connection_string'  # Replace with your MongoDB connection string
+    database_name = 'mydatabase'  # Replace with your database name
 
-    # Query the database to count the number of active users
-    active_user_count = active_users_collection.count_documents({'status': 'active'})
+    client = MongoClient(mongo_connection_string)
+    db = client[database_name]
+
+    # Assuming 'users' is the collection name. Replace if using a different collection
+    users_collection = db.users  # Replace with your collection name if different
+
+    # Count documents in the 'users' collection where 'status' is set to 'active'
+    active_user_count = users_collection.count_documents({'status': 'active'})
+
     return active_user_count
 
 # Example usage:
-# active_user_count = count_active_users()
+active_user_count = count_active_users()
+print(f"Number of active users: {active_user_count}")
