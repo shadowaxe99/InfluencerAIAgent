@@ -85,3 +85,7 @@ ContactSchema = object
 AppointmentSchema = object
 StrategyInsightSchema = object
 PostPerformanceSchema = object
+
+# Added for demonstration purposes
+def example_function():
+    return 'This is a modified function'
